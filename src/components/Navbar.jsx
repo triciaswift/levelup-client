@@ -7,7 +7,7 @@ export const NavBar = () => {
     <ul className="navbar pb-10">
       <li className="navbar__item pl-10">
         <NavLink
-          className="text-left underline text-blue-600 hover:text-purple-700"
+          className="text-left text-blue-600 hover:text-purple-700"
           to={"/games"}
         >
           Games
@@ -15,7 +15,7 @@ export const NavBar = () => {
       </li>
       <li className="navbar__item">
         <NavLink
-          className="text-left underline text-blue-600 hover:text-purple-700"
+          className="text-left text-blue-600 hover:text-purple-700"
           to={"/events"}
         >
           Events
@@ -23,7 +23,7 @@ export const NavBar = () => {
       </li>
       <li className="navbar__item">
         <NavLink
-          className="text-left underline text-blue-600 hover:text-purple-700"
+          className="text-left text-blue-600 hover:text-purple-700"
           to={"/profile"}
         >
           Profile

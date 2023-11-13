@@ -20,7 +20,7 @@ export const Login = () => {
     })
       .then((res) => res.json())
       .then((authInfo) => {
-        if (authInfo.token) {
+        if (authInfo.valid) {
           localStorage.setItem("levelup_token", JSON.stringify(authInfo));
           navigate("/");
         } else {
