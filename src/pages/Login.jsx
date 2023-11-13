@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 export const Login = () => {
-  const [email, setEmail] = useState("tricia@swift.com");
-  const [password, setPassword] = useState("swift");
+  const [username, setUsername] = useState("Carrie1945");
+  const [password, setPassword] = useState("me");
   const existDialog = useRef();
   const navigate = useNavigate();
 
@@ -13,7 +13,7 @@ export const Login = () => {
     e.preventDefault();
     fetch(`http://localhost:8000/login`, {
       method: "POST",
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ username, password }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -30,7 +30,7 @@ export const Login = () => {
   };
 
   return (
-    <main className="container--login">
+    <main className="container--login bg-levelup-game max-w-[900px] mt-32">
       <dialog className="dialog dialog--auth" ref={existDialog}>
         <div>User does not exist</div>
         <button
@@ -41,53 +41,63 @@ export const Login = () => {
         </button>
       </dialog>
 
-      <section>
-        <form className="form--login" onSubmit={handleLogin}>
-          <h1 className="font-nunito font-bold text-4xl mt-7 mb-3">Level Up</h1>
-          <h2 className="font-medium text-xl mb-10">Please sign in</h2>
-          <fieldset className="mb-4">
-            <label htmlFor="inputEmail"> Email address </label>
-            <input
-              type="email"
-              id="inputEmail"
-              value={email}
-              onChange={(evt) => setEmail(evt.target.value)}
-              className="form-control"
-              placeholder="Email address"
-              required
-              autoFocus
-            />
-          </fieldset>
-          <fieldset className="mb-4">
-            <label htmlFor="inputPassword"> Password </label>
-            <input
-              type="password"
-              id="inputPassword"
-              value={password}
-              onChange={(evt) => setPassword(evt.target.value)}
-              className="form-control"
-              placeholder="Password"
-            />
-          </fieldset>
-          <fieldset>
-            <button
-              type="submit"
-              className="button p-3 rounded-md bg-blue-800 text-blue-100"
-            >
-              Sign in
-            </button>
-          </fieldset>
-        </form>
-      </section>
-      <div className="loginLinks">
-        <section className="link--register">
-          <Link
-            className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-            to="/register"
-          >
-            Not a member yet?
-          </Link>
+      <div className="form--container">
+        <section>
+          <form className="form--login" onSubmit={handleLogin}>
+            <h1 className="font-nunito font-black text-4xl mt-7 mb-3">
+              Level Up
+            </h1>
+            <h2 className="font-bold text-xl mb-10">Please sign in</h2>
+            <fieldset className="mb-4">
+              <label htmlFor="inputUsername" className="font-semibold">
+                {" "}
+                Username{" "}
+              </label>
+              <input
+                type="text"
+                id="inputUsername"
+                value={username}
+                onChange={(evt) => setUsername(evt.target.value)}
+                className="form-control"
+                placeholder="Username"
+                required
+                autoFocus
+              />
+            </fieldset>
+            <fieldset className="mb-4">
+              <label htmlFor="inputPassword" className="font-semibold">
+                {" "}
+                Password{" "}
+              </label>
+              <input
+                type="password"
+                id="inputPassword"
+                value={password}
+                onChange={(evt) => setPassword(evt.target.value)}
+                className="form-control"
+                placeholder="Password"
+              />
+            </fieldset>
+            <fieldset>
+              <button
+                type="submit"
+                className="button p-3 rounded-md bg-blue-800 text-blue-100"
+              >
+                Sign in
+              </button>
+            </fieldset>
+          </form>
         </section>
+        <div className="loginLinks">
+          <section className="link--register">
+            <Link
+              className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+              to="/register"
+            >
+              Not a member yet?
+            </Link>
+          </section>
+        </div>
       </div>
     </main>
   );
