@@ -3,6 +3,7 @@ import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { Authorized } from "./Authorized";
 import { GameList } from "./game/GameList";
+import { EventList } from "./game/EventList";
 
 export const ApplicationViews = () => {
   return (
@@ -12,6 +13,7 @@ export const ApplicationViews = () => {
         <Route path="register" element={<Register />} />
         <Route element={<Authorized />}>
           <Route path="/" element={<GameList />} />
+          <Route path="events" element={<EventList />} />
         </Route>
       </Routes>
     </BrowserRouter>
