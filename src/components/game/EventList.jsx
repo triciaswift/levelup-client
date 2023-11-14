@@ -25,15 +25,19 @@ export const EventList = () => {
           <div className="event--name text-center font-bold text-lg mb-2">
             {event.name}
           </div>
-          <div className="event--manufacturer flex items-center">
+          <div className="event--date flex items-center">
             <label className="mr-2 text-lg">Date: </label>
             <div>{event.date}</div>
           </div>
-          <div className="event--players flex items-center">
+          <div className="event--time flex items-center">
             <label className="mr-2 text-lg">Time: </label>
             <div>{event.time}</div>
           </div>
-          <div className="event--type flex items-center">
+          <div className="event--game flex items-center">
+            <label className="mr-2 text-lg">Game: </label>
+            <div>{event.game.name}</div>
+          </div>
+          <div className="event--organizer flex items-center">
             <label className="mr-2 text-lg">Organizer: </label>
             <div>{event.organizer.full_name}</div>
           </div>
