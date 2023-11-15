@@ -9,4 +9,12 @@ body {
   .card {
     @apply bg-purple-800 hover:bg-fuchsia-700 border-8 border-fuchsia-700 border-double drop-shadow-lg hover:drop-shadow-2xl hover:border-8 hover:border-purple-800 text-white rounded-lg p-5 my-4;
   }
+
+  .btn {
+    @apply bg-slate-500 text-white px-3 py-0.5 rounded-3xl font-medium border-4;
+  }
+
+  .btn--primary {
+    @apply bg-purple-800 border-8 border-fuchsia-700 border-double;
+  }
 }
