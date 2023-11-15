@@ -1,21 +1,13 @@
 import { useEffect, useState } from "react";
+import { getEvents } from "../managers/EventManager";
 
 export const EventList = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    let url = "http://localhost:8000/events";
-    fetch(url, {
-      headers: {
-        Authorization: `Token ${
-          JSON.parse(localStorage.getItem("levelup_token")).token
-        }`,
-      },
-    })
-      .then((res) => res.json())
-      .then((gameArr) => {
-        setEvents(gameArr);
-      });
+    getEvents().then((gameArr) => {
+      setEvents(gameArr);
+    });
   }, []);
 
   const displayEvents = () => {

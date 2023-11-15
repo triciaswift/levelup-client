@@ -1,21 +1,15 @@
 import { useEffect, useState } from "react";
+import { getGames } from "../managers/GameManager";
+import { useNavigate } from "react-router-dom";
 
 export const GameList = () => {
+  const navigate = useNavigate();
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    let url = "http://localhost:8000/games";
-    fetch(url, {
-      headers: {
-        Authorization: `Token ${
-          JSON.parse(localStorage.getItem("levelup_token")).token
-        }`,
-      },
-    })
-      .then((res) => res.json())
-      .then((gameArr) => {
-        setGames(gameArr);
-      });
+    getGames().then((gameArr) => {
+      setGames(gameArr);
+    });
   }, []);
 
   const displayGames = () => {
@@ -39,7 +33,17 @@ export const GameList = () => {
 
   return (
     <article className="games">
-      <h1 className="text-center text-4xl mb-10">Game List</h1>
+      <h1 className="text-center text-4xl mb-10">
+        <button
+          className="btn btn-2 btn-sep icon-create"
+          onClick={() => {
+            navigate({ pathname: "/games/new" });
+          }}
+        >
+          Register New Game
+        </button>
+        Game List
+      </h1>
       <div className="games--container flex flex-wrap justify-around mx-3">
         {displayGames()}
       </div>
