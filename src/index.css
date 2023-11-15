@@ -11,6 +11,10 @@ body {
   }
 
   .btn {
-    @apply bg-purple-800 border-8 border-fuchsia-700 border-double text-white rounded-3xl px-3 py-0.5 font-medium;
+    @apply bg-slate-500 text-white px-3 py-0.5 rounded-3xl font-medium border-4;
+  }
+
+  .btn--primary {
+    @apply bg-purple-800 border-8 border-fuchsia-700 border-double;
   }
 }

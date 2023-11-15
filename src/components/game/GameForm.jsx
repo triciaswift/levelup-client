@@ -26,6 +26,20 @@ export const GameForm = () => {
     });
   };
 
+  const formInput = (prop, type) => {
+    return (
+      <input
+        type={type}
+        name={prop}
+        required
+        autoFocus
+        className="form-control"
+        value={currentGame.prop}
+        onChange={changeGameState}
+      />
+    );
+  };
+
   return (
     <form className="gameForm">
       <h2 className="gameForm__name text-center text-2xl mb-6">
@@ -36,33 +50,16 @@ export const GameForm = () => {
           <label htmlFor="name" className="text-md">
             Title:{" "}
           </label>
-          <input
-            type="text"
-            name="name"
-            required
-            autoFocus
-            className="form-control"
-            value={currentGame.name}
-            onChange={changeGameState}
-          />
+          {formInput("name", "text")}
         </div>
       </fieldset>
 
-      {/* TODO: create the rest of the input fields */}
       <fieldset>
         <div className="form-group mx-6 my-3">
           <label htmlFor="manufacturer" className="text-md">
             Created By:{" "}
           </label>
-          <input
-            type="text"
-            name="manufacturer"
-            required
-            autoFocus
-            className="form-control"
-            value={currentGame.manufacturer}
-            onChange={changeGameState}
-          />
+          {formInput("manufacturer", "text")}
         </div>
       </fieldset>
       <fieldset>
@@ -70,15 +67,7 @@ export const GameForm = () => {
           <label htmlFor="number_of_players" className="text-md">
             Max Number of Players:{" "}
           </label>
-          <input
-            type="number"
-            name="number_of_players"
-            required
-            autoFocus
-            className="form-control"
-            value={currentGame.number_of_players}
-            onChange={changeGameState}
-          />
+          {formInput("number_of_players", "number")}
         </div>
       </fieldset>
       <fieldset>
@@ -111,7 +100,7 @@ export const GameForm = () => {
             // Navigate to /games on success
             navigate("/");
           }}
-          className="btn mr-6"
+          className="btn btn--primary mr-6"
         >
           Create
         </button>

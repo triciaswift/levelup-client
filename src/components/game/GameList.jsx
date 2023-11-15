@@ -33,16 +33,18 @@ export const GameList = () => {
 
   return (
     <article className="games">
-      <h1 className="text-center text-4xl mb-10">
-        <button
-          className="btn btn-2 btn-sep icon-create"
-          onClick={() => {
-            navigate({ pathname: "/games/new" });
-          }}
-        >
-          Register New Game
-        </button>
-        Game List
+      <h1 className="flex flex-col justify-center items-center">
+        <div className="text-4xl mb-4">Game List</div>
+        <div className="mb-4">
+          <button
+            className="btn btn-sep icon-create"
+            onClick={() => {
+              navigate({ pathname: "/games/new" });
+            }}
+          >
+            Register New Game
+          </button>
+        </div>
       </h1>
       <div className="games--container flex flex-wrap justify-around mx-3">
         {displayGames()}
