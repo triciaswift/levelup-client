@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { getEvents } from "../managers/EventManager";
+import { useNavigate } from "react-router-dom";
 
 export const EventList = () => {
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -39,9 +41,21 @@ export const EventList = () => {
   };
 
   return (
-    <article className="games">
-      <h1 className="text-center text-4xl mb-10">Event List</h1>
-      <div className="games--container flex flex-wrap justify-around mx-3">
+    <article className="events">
+      <h1 className="flex flex-col justify-center items-center">
+        <div className="text-4xl mb-4">Event List</div>
+        <div className="mb-10">
+          <button
+            className="btn"
+            onClick={() => {
+              navigate({ pathname: "/events/new" });
+            }}
+          >
+            Register New Event
+          </button>
+        </div>
+      </h1>
+      <div className="events--container flex flex-wrap justify-around gap-x-px gap-y-8">
         {displayEvents()}
       </div>
     </article>

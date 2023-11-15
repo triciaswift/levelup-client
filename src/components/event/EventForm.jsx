@@ -1,27 +1,30 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { createGame, getGameTypes } from "../managers/GameManager";
+import { getGames } from "../managers/GameManager";
+import { createEvent } from "../managers/EventManager";
 
-export const GameForm = () => {
+export const EventForm = () => {
   const navigate = useNavigate();
-  const [gameTypes, setGameTypes] = useState([]);
+  const [games, setGames] = useState([]);
 
   // Decision: Should you provide initial property values?
-  const [currentGame, setCurrentGame] = useState({
+  const [currentEvent, setCurrentEvent] = useState({
     name: "",
-    manufacturer: "",
-    number_of_players: 0,
+    date: "",
+    time: "",
+    location: "",
+    game: 0,
   });
 
   useEffect(() => {
-    getGameTypes().then((typeArr) => {
-      setGameTypes(typeArr);
+    getGames().then((gameArr) => {
+      setGames(gameArr);
     });
   }, []);
 
   const changeGameState = (domEvent) => {
-    setCurrentGame({
-      ...currentGame,
+    setCurrentEvent({
+      ...currentEvent,
       [domEvent.target.name]: domEvent.target.value,
     });
   };
@@ -34,56 +37,63 @@ export const GameForm = () => {
         required
         autoFocus
         className="form-control"
-        value={currentGame.prop}
+        value={currentEvent.prop}
         onChange={changeGameState}
       />
     );
   };
 
   return (
-    <form className="gameForm">
-      <h2 className="gameForm__name text-center text-2xl mb-6">
-        Register New Game
+    <form className="eventForm">
+      <h2 className="eventForm__name text-center text-2xl mb-6">
+        Register New Event
       </h2>
       <fieldset>
         <div className="form-group mx-6 my-3">
           <label htmlFor="name" className="text-md">
-            Title:{" "}
+            Name:{" "}
           </label>
           {formInput("name", "text")}
         </div>
       </fieldset>
-
       <fieldset>
         <div className="form-group mx-6 my-3">
-          <label htmlFor="manufacturer" className="text-md">
-            Created By:{" "}
+          <label htmlFor="date" className="text-md">
+            Date:{" "}
           </label>
-          {formInput("manufacturer", "text")}
+          {formInput("date", "date")}
         </div>
       </fieldset>
       <fieldset>
         <div className="form-group mx-6 my-3">
-          <label htmlFor="number_of_players" className="text-md">
-            Max Number of Players:{" "}
+          <label htmlFor="time" className="text-md">
+            Start Time:{" "}
           </label>
-          {formInput("number_of_players", "number")}
+          {formInput("time", "time")}
         </div>
       </fieldset>
       <fieldset>
         <div className="form-group mx-6 my-3">
-          <label htmlFor="type" className="text-md">
-            Type:{" "}
+          <label htmlFor="location" className="text-md">
+            Location:{" "}
+          </label>
+          {formInput("location", "text")}
+        </div>
+      </fieldset>
+      <fieldset>
+        <div className="form-group mx-6 my-3">
+          <label htmlFor="game" className="text-md">
+            Game:{" "}
           </label>
           <select
-            name="type"
+            name="game"
             className="form-control"
             onChange={changeGameState}
           >
-            <option value={0}>- Select a type -</option>
-            {gameTypes.map((t) => (
-              <option key={`type-${t.id}`} value={t.id}>
-                {t.label}
+            <option value={0}>- Select a game -</option>
+            {games.map((g) => (
+              <option key={`game-${g.id}`} value={g.id}>
+                {g.name}
               </option>
             ))}
           </select>
@@ -96,9 +106,9 @@ export const GameForm = () => {
             // Prevent form from being submitted
             evt.preventDefault();
             // Send POST request to your API
-            await createGame(currentGame);
+            await createEvent(currentEvent);
             // Navigate to /games on success
-            navigate("/");
+            navigate("/events/all");
           }}
           className="btn btn--form mr-6"
         >
