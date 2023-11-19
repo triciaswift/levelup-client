@@ -15,17 +15,16 @@ export const GameList = () => {
   const displayGames = () => {
     if (games && games.length) {
       return games.map((game) => (
-        <div className="game--container card" key={game.id}>
+        <div
+          className="game--container card"
+          key={game.id}
+          onClick={() => {
+            navigate({ pathname: `/games/details/${game.id}` });
+          }}
+        >
           <div className="game--name text-center font-bold text-lg mb-2">
             {game.name}
           </div>
-          <div className="game--manufacturer">
-            Created By: {game.manufacturer}
-          </div>
-          <div className="game--players">
-            Number of players: {game.number_of_players}
-          </div>
-          <div className="game--type">Type: {game.type.label}</div>
         </div>
       ));
     }

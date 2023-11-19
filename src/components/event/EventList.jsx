@@ -15,7 +15,13 @@ export const EventList = () => {
   const displayEvents = () => {
     if (events && events.length) {
       return events.map((event) => (
-        <div className="event--container card" key={event.id}>
+        <div
+          className="event--container card"
+          key={event.id}
+          onClick={() => {
+            navigate({ pathname: `/events/details/${event.id}` });
+          }}
+        >
           <div className="event--name text-center font-bold text-lg mb-2">
             {event.name}
           </div>
